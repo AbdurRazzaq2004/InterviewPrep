@@ -8,7 +8,13 @@ jobs:
     steps:
     - name: Present Working Directory
       run: pwd
+    
+    - name: CheckOut
+      uses: actions/checkout@v5
 
     - name: List All Files
       run: ls -l
+
+    - name: Read File
+      run: cat Readme.md
       
