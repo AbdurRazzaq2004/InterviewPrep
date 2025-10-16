@@ -2,7 +2,7 @@ name: learn-github-actions
 run-name: ${{ github.actor }} is learning GitHub Actions
 on: [push]
 jobs:
-  Job1_ListDirectory:
+  job1:
     runs-on: ubuntu-latest
     steps:
      - name: CheckOut
@@ -12,8 +12,8 @@ jobs:
         pwd
         ls -la
 
-  Job2_MakeDirectory:
-    needs: Job1_ListDirectory
+  job2:
+    needs: job1
     runs-on: ubuntu-latest
     steps:
      - name: making directory and creating file
@@ -27,8 +27,8 @@ jobs:
         name: uplaoding test1 directory
         path: test1/
   
-  Job3_PrintContent:
-    needs: Job2_MakeDirectory
+  job3:
+    needs: job2
     runs-on: ubuntu-latest
     steps:
      
@@ -36,7 +36,7 @@ jobs:
        uses: actions/download-artifact@v4
        with:
         name: Downloading test1 directory
-        path: test1/
+        
      - name: printing content
        run : |
         ls -la
