@@ -21,10 +21,11 @@ jobs:
         mkdir test1
         cd test1/
         echo "This is the content of my new file." > newfile.txt
+
      - name: Uploading Artifact
        uses: actions/upload-artifact@v4
        with:
-        name: uplaoding test1 directory
+        name: test1
         path: test1/
   
   job3:
@@ -32,10 +33,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      
-     - name: Uploading Artifact
+     - name: Downlaoding Artifact
        uses: actions/download-artifact@v4
        with:
-        name: test1/
+        name: test1
         
      - name: printing content
        run : |
