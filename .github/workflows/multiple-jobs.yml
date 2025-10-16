@@ -41,4 +41,4 @@ jobs:
      - name: printing content
        run : |
         ls -la
-        cat /test1/newfile.txt
+        cat test1/newfile.txt
