@@ -4,20 +4,17 @@ on: [push]
 jobs:
   Job1_ListDirectory:
     runs-on: ubuntu-latest
-
     steps:
-    
      - name: CheckOut
        uses: actions/checkout@v5
-
      - name: Present Working Directory
        run: |
         pwd
         ls -la
 
   Job2_MakeDirectory:
+    needs: Job1_ListDirectory
     runs-on: ubuntu-latest
-    
     steps:
      - name: making directory and creating file
        run: |
@@ -26,6 +23,7 @@ jobs:
         echo "This is the content of my new file." > newfile.txt
   
   Job3_PrintContent:
+    needs: Job2_MakeDirectory
     runs-on: ubuntu-latest
     steps:
      - name: printing content
