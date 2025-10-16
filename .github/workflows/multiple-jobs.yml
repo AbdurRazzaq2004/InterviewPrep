@@ -1,0 +1,34 @@
+name: learn-github-actions
+run-name: ${{ github.actor }} is learning GitHub Actions
+on: [push]
+jobs:
+  Job1_ListDirectory:
+    runs-on: ubuntu-latest
+
+    steps:
+    
+     - name: CheckOut
+       uses: actions/checkout@v5
+
+     - name: Present Working Directory
+       run: |
+        pwd
+        ls -la
+
+  Job2_MakeDirectory:
+    runs-on: ubuntu-latest
+    
+    steps:
+     - name: making directory and creating file
+       run: |
+        mkdir test1
+        cd test1/
+        echo "This is the content of my new file." > newfile.txt
+  
+  Job3_PrintContent:
+    runs-on: ubuntu-latest
+    steps:
+     - name: printing content
+       run : |
+        ls -la
+        cat /test1/newfile.txt
