@@ -13,11 +13,12 @@ jobs:
       uses: actions/checkout@v5
     
     - name: Multi Line Commands
-      run: ls -la
-            mkdir test1
-            cd test1/
-            echo "This is the content of my new file." > newfile.txt
-            cat newfile.txt
+      run: |
+        ls -la
+        mkdir test1
+        cd test1/
+        echo "This is the content of my new file." > newfile.txt
+        cat newfile.txt
 
     # - name: List All Files
     #   run: ls -l
