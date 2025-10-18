@@ -65,7 +65,7 @@ jobs:
       - name: Build Docker image
         uses: docker/build-push-action@v6
         with:
-          context: .
+          context: /app
           push: false
           tags: ${{ env.IMAGE_NAME }}:${{ env.APP_VERSION }}
           load: true
