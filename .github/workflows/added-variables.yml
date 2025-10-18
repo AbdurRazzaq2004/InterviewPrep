@@ -68,10 +68,14 @@ jobs:
           context: .
           push: false
           tags: ${{ env.IMAGE_NAME }}:${{ env.APP_VERSION }}
-          outputs: type=docker,dest=/tmp/my-image.tar
+          load: true
 
       # Save the image for next job
       - name: Save image for push job
+        run: |
+          docker save ${{ env.IMAGE_NAME }}:${{ env.APP_VERSION }} > /tmp/my-image.tar
+          
+      - name: Upload image file
         uses: actions/upload-artifact@v4
         with:
           name: docker-image
