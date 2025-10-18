@@ -15,7 +15,7 @@ env:
 
 jobs:
   # JOB 1: GET THE CODE
-  checkout:
+  job1:
     # Name shown in GitHub UI
     name: Get Source Code
     # Run on Ubuntu machine
@@ -40,13 +40,13 @@ jobs:
           path: .
 
   # JOB 2: BUILD DOCKER IMAGE
-  build-image:
+  job2:
     # Name shown in GitHub UI
     name: Build Docker Image
     # Run on Ubuntu machine
     runs-on: ubuntu-latest
     # Wait for checkout job to finish first
-    needs: checkout
+    needs: job1
     
     steps:
       # Get the code from previous job
@@ -82,13 +82,13 @@ jobs:
           path: /tmp/my-image.tar
 
   # JOB 3: PUSH DOCKER IMAGE
-  push-image:
+  job3:
     # Name shown in GitHub UI
     name: Push to Docker Hub
     # Run on Ubuntu machine
     runs-on: ubuntu-latest
     # Wait for build job to finish first
-    needs: build-image
+    needs: job2
     
     steps:
       # Get the built image from previous job
