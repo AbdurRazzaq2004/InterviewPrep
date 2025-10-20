@@ -12,12 +12,12 @@ jobs:
         # Excluding Node Image AS Window are unable to run it
         exclude:
          - os: windows-latest
-           image: node:14
+           image: [node:14, node:16]
         # Including Simple Hello World Image for Windows for Testing Purpose
         incldude:
          - os: windows-latest
            image: hello-world
-           
+
     runs-on: ${{ matrix.os }}
     steps:
      - name: Deploying ${{ matrix.image }} on ${{ matrix.os }}
