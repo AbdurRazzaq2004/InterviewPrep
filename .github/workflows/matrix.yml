@@ -1,7 +1,7 @@
 name: Matrix Configuration Example
 run-name: ${{ github.actor }} is matrix configuration example
 on: 
- push
+  push
 
 jobs:
   deploy:
@@ -9,17 +9,18 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
         image: [node:14, node:16]
-        # Excluding Node Image AS Window are unable to run it
+        # Excluding Node Images as Windows is unable to run them properly
         exclude:
-         - image: [node:14, node:16]
-           os: windows-latest
+          - image: node:14
+            os: windows-latest
+          - image: node:16
+            os: windows-latest
         # Including Simple Hello World Image for Windows for Testing Purpose
         include:
-         - image: hello-world
-           os: windows-latest
+          - image: hello-world
+            os: windows-latest
 
     runs-on: ${{ matrix.os }}
     steps:
-     - name: Deploying ${{ matrix.image }} on ${{ matrix.os }}
-       run: docker run ${{ matrix.image }}
-     
+      - name: Deploying ${{ matrix.image }} on ${{ matrix.os }}
+        run: docker run ${{ matrix.image }}
